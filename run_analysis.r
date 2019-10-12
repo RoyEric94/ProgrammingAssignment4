@@ -76,4 +76,4 @@ dataMeanStd <- read.table("Step4.txt")
 
 results <- dataMeanStd %>% group_by(Subject, Activity) %>% summarise_all(mean)
 
-write.table(results, "Step5.txt")
+write.table(results, "Step5.txt", row.name=FALSE)

@@ -46,10 +46,11 @@ activityLookup <- activities$V2
 names(activityLookup) <- activities$V1
 
 # Look activities up into new column
-ActivityDescription <- activityLookup[dataMeanStd$Activity]
+ActivityDescription <- activityLookup[as.integer(dataMeanStd$Activity)]
+names(ActivityDescription) <- "ActivityDescription"
 
 # Attach new column
-cbind(dataMeanStd, ActivityDescription)
+dataMeanStd <- cbind(dataMeanStd, ActivityDescription)
 
 # Step 4 - Replace column names with the proper feature name
 # Read features file
@@ -75,4 +76,4 @@ dataMeanStd <- read.table("Step4.txt")
 
 results <- dataMeanStd %>% group_by(Subject, Activity) %>% summarise_all(mean)
 
-write.table(dataMeanStd, "Step5.txt")
+write.table(results, "Step5.txt")
